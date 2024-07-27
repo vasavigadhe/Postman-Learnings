@@ -1,0 +1,54 @@
+{
+  "Students": [
+    {
+      "id": "1",
+      "name": "Nithin",
+      "location": "France",
+      "phone": "0986379647",
+      "courses": [
+        "C++",
+        "C Sharp"
+      ]
+    },
+    {
+      "id": "9e86",
+      "courses": [
+        "java",
+        "C++"
+      ],
+      "phone": "1234567890",
+      "name": "Rocky",
+      "location": "mumbai"
+    },
+    {
+      "id": "fd0d",
+      "courses": [
+        "java",
+        "C++"
+      ],
+      "phone": "1234567890",
+      "name": "Rocky",
+      "location": "mumbai"
+    },
+    {
+      "id": "3297",
+      "name": "Rocky",
+      "phone": "1234567890",
+      "location": "mumbai",
+      "courses": [
+        "java",
+        "C++"
+      ]
+    },
+    {
+      "id": "0541",
+      "courses": [
+        "Selenium",
+        "RestAssured"
+      ],
+      "phone": "246245245324",
+      "name": "Rohini",
+      "location": "Hyd"
+    }
+  ]
+}

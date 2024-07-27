@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "47dc56b7-e7d6-43da-921b-fa77d92ced95",
+		"name": "Opencart Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34704237"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"description": "Get it from opencart admin",
+							"type": "text"
+						},
+						{
+							"key": "key",
+							"value": "32xFe6lAO6Yha8shEpnnsN1C51gtXFIWjskM1udeO48vz8HkTOVncehfncFlpL1TGJRj8pXAVqjzyOpxVPHdXbFzONpAvCxyFOzY71Gn3iITE6qDTE5lgRK2S0J2bfqIjzK6rCyXUw7RUQ0hXcyZPZ0aTX5Yh4AwYz7JfoL7piquJ4FIzsOtgdTUeFvRyujstWmnfG3Na4a3mGUqrmhjeARgKSGDlTTxh6rxpzaYs7h5Tuq7WtmMgEGPGmtiXE1n",
+							"description": "Get it from opencart admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}api/login",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ip",
+			"value": "192.168.100.7",
+			"type": "string"
+		},
+		{
+			"key": "base_url",
+			"value": "http://{{ip}}/opencart.example.com/index.php?route=",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,15 @@
+Bearer Token: 2e25c3506e046654d2e27b347172f5036d1a3fac0dc7dfafbe369fe9bff39960
+
+POST 		https://gorest.co.in/public/v2/users		Create a new user
+GET 		https://gorest.co.in/public/v2/users/2934578	Get user details
+PUT|PATCH 	https://gorest.co.in/public/v2/users/2934578	Update user details
+DELETE 		https://gorest.co.in/public/v2/users/2934578	Delete user
+
+For Post/Patch Requests:
+{
+"name":"Tenali Ramakrishna", 
+"gender":"male",
+ "email":"tenali.ramakrishna@15ce.com", 
+"status":"active"
+}
+

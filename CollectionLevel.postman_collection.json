@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "6a143ba3-c576-4bb4-88be-c289c61e4e3b",
+		"name": "CollectionLevel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34704237"
+	},
+	"item": [
+		{
+			"name": "FolderLevel",
+			"item": [
+				{
+					"name": "RequestLevel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"Response at Request level\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"Pre-request at Request level\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_Coll}}/leodata",
+							"host": [
+								"{{url_Coll}}"
+							],
+							"path": [
+								"leodata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRequest",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Local Variable\r",
+									"pm.variables.set(\"url_local\",\"http://localhost:3000\");\r",
+									"\r",
+									"//Global Variable\r",
+									"pm.globals.set(\"url_global\",\"http://localhost:3000\");\r",
+									"\r",
+									"//Environment Variable\r",
+									"pm.environment.set(\"url_envi\",\"http://localhost:3000\");\r",
+									"\r",
+									"//collection variable\r",
+									"pm.collectionVariables.set(\"url_collect\",\"http://localhost:3000\");\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//capture all the variable values.\r",
+									"console.log(pm.variables.get(\"url_local\"));\r",
+									"console.log(pm.variables.get(\"url_global\"));\r",
+									"console.log(pm.variables.get(\"url_envi\"));\r",
+									"console.log(pm.variables.get(\"url_collect\"));\r",
+									"\r",
+									"//Local Variable\r",
+									"pm.variables.unset(\"url_local\",\"http://localhost:3000\");\r",
+									"\r",
+									"//Global Variable\r",
+									"pm.globals.unset(\"url_global\",\"http://localhost:3000\");\r",
+									"\r",
+									"//Environment Variable\r",
+									"pm.environment.unset(\"url_envi\",\"http://localhost:3000\");\r",
+									"\r",
+									"//collection variable\r",
+									"pm.collectionVariables.unset(\"url_collect\",\"http://localhost:3000\");\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_collect}}/Students/{{Prod}}",
+							"host": [
+								"{{url_collect}}"
+							],
+							"path": [
+								"Students",
+								"{{Prod}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"console.log(\"Request at Folder level\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"console.log(\"Response at Folder level\");"
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"console.log(\"Pre-request at collection level\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"console.log(\"Response at collection level\");"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_Coll",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

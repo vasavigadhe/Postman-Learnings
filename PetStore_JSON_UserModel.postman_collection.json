@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "0970dce6-1ac8-4697-af4f-9aefbe4d98a1",
+		"name": "PetStore_JSON_UserModel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34704237"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const randnum = Math.floor(Math.random()*100+1);\r",
+							"const ranString = Math.random().toString(36).substring(2);\r",
+							"\r",
+							"pm.environment.set(\"id\", randnum);\r",
+							"pm.collectionVariables.set(\"uname\",ranString);\r",
+							"pm.collectionVariables.set(\"Fname\",ranString);\r",
+							"pm.collectionVariables.set(\"Lname\", ranString);\r",
+							"pm.collectionVariables.set(\"email\",ranString+\"@gmail.com\");\r",
+							"pm.collectionVariables.set(\"pwd\", randnum+ranString);\r",
+							"pm.collectionVariables.set(\"phn\", 111111111);\r",
+							"pm.collectionVariables.set(\"ustatus\", 0);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": {{id}},\r\n    \"username\": \"{{uname}}\",\r\n    \"firstName\": \"{{Fname}}\",\r\n    \"lastName\": \"{{Lname}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{pwd}}\",\r\n    \"phone\": \"{{phn}}\",\r\n    \"userStatus\": \"{{ustatus}}\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/createWithList",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"createWithList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Your test email\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(jsonData.email).to.eql(pm.collectionVariables.get(\"email\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/{{Fname}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"{{Fname}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const ranString = Math.random.toString(36).substring(2);\r",
+							"\r",
+							"pm.collectionVariables.set(\"uname\",ranString);\r",
+							"pm.collectionVariables.set(\"phn\", 2222222);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"{{uname}}\",\r\n\t\"phone\": \"{{phn}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/{{Fname}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"{{Fname}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.unset(\"id\");\r",
+							"pm.collectionVariables.unset(\"uname\");\r",
+							"pm.collectionVariables.unset(\"Fname\");\r",
+							"pm.collectionVariables.unset(\"Lname\");\r",
+							"pm.collectionVariables.unset(\"email\");\r",
+							"pm.collectionVariables.unset(\"pwd\");\r",
+							"pm.collectionVariables.unset(\"phn\");\r",
+							"pm.collectionVariables.unset(\"ustatus\");\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/{{Fname}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"{{Fname}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

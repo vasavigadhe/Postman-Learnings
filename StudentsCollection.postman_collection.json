@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "314e1799-480c-4480-89fa-b64e04264aa8",
+		"name": "StudentsCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34704237"
+	},
+	"item": [
+		{
+			"name": "GetAllStudents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//check one status code at a time\r",
+							"pm.test(\"Check the status code is 200\", ()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"//check status when the code is expected to be more than 1.\r",
+							"pm.test(\"check status code is 200 or 201\", ()=>{\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+							"})\r",
+							"\r",
+							"//check the static content present in the Header.\r",
+							"pm.test(\"Check the Content-type present in the Header\",()=>{\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"})\r",
+							"\r",
+							"//check the value of Header type.\r",
+							"pm.test(\"Check the content in the Content-Type\",()=>{\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"})\r",
+							"\r",
+							"//check whether below content is present or not.\r",
+							"pm.test(\"Check cookie is present or not\", ()=>{\r",
+							"    pm.expect(pm.cookies.has(\"language\")).to.be.true;\r",
+							"})\r",
+							"\r",
+							"//check the value of cookie\r",
+							"pm.test(\"check the value of language in the cookie\",()=>{\r",
+							"    pm.expect(pm.cookies.get(\"language\")).to.eql(\"en-gb\");\r",
+							"})\r",
+							"\r",
+							"//check the response time \r",
+							"pm.test(\"check the response time\", ()=>{\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"})\r",
+							"pm.test(\"check the response by having max time\", ()=>{\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(5);\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/Students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOneStudentRequest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/Students/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateStudent",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify status code Created\", () =>{\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": \"4\",\r\n        \"name\": \"Dhoni\",\r\n        \"rollno\": 38,\r\n        \"course\": [\r\n            \"CShar\",\r\n            \"C++\"\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/Students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Madhu\",\r\n        \"rollno\": 34,\r\n        \"course\": [\r\n            \"C#\",\r\n            \"Selenium\"\r\n        ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/Students/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteRequest",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/Students/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LeoGetRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check the status code is 200\", ()=> {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if status code expected to be more than 1\", ()=>{\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"check the content in the Header\",()=>{\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"check the content in the Header\", ()=>{\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Cookies\", ()=>{\r",
+							"    pm.expect(pm.cookies.has(\"language\")).to.be.true;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the content inside the cookies\",()=>{\r",
+							"    pm.expect(pm.cookies.get(\"language\")).to.eql(\"en-gb\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the response time\",()=>{\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(1)\r",
+							"})\r",
+							"\r",
+							"//check the type of values\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"check the type of data\",()=>{\r",
+							"    pm.expect(jsonData[0]).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData[0].id).to.be.a(\"number\");\r",
+							"    pm.expect(jsonData[0].name).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData[0].location).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData[0].courses).to.be.an(\"array\");\r",
+							"    pm.expect(jsonData[0].courses[0]).to.be.an(\"string\");\r",
+							"})\r",
+							"\r",
+							"//validate the values assigned\r",
+							"pm.test(\"Check the values assigned\", ()=>{\r",
+							"    pm.expect(jsonData[0].id).to.eql(0);\r",
+							"    pm.expect(jsonData[0].name).to.eql(\"John\");\r",
+							"    pm.expect(jsonData[0].location).to.eql(\"India\");\r",
+							"    pm.expect(jsonData[0].courses[0]).to.eql(\"Java\");\r",
+							"    //To check one value in Array\r",
+							"    pm.expect(jsonData[0].courses).to.include(\"Java\");\r",
+							"    //To check list of values in Array.\r",
+							"    pm.expect(jsonData[0].courses).to.have.members([\"Java\",\"Selenium\"])\r",
+							"})\r",
+							"\r",
+							"var schema = {\r",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\r",
+							"  \"title\": \"Generated schema for Root\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"leodata\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": {\r",
+							"        \"type\": \"object\",\r",
+							"        \"properties\": {\r",
+							"          \"id\": {\r",
+							"            \"type\": \"number\"\r",
+							"          },\r",
+							"          \"name\": {\r",
+							"            \"type\": \"string\"\r",
+							"          },\r",
+							"          \"location\": {\r",
+							"            \"type\": \"string\"\r",
+							"          },\r",
+							"          \"phone\": {\r",
+							"            \"type\": \"string\"\r",
+							"          },\r",
+							"          \"courses\": {\r",
+							"            \"type\": \"array\",\r",
+							"            \"items\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          }\r",
+							"        },\r",
+							"        \"required\": [\r",
+							"          \"id\",\r",
+							"          \"name\",\r",
+							"          \"location\",\r",
+							"          \"phone\",\r",
+							"          \"courses\"\r",
+							"        ]\r",
+							"      }\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"leodata\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Validate JSON Schema\", () =>{\r",
+							"    pm.expect(tv4.validate(\"jsonData\",\"Schema\")).to.be.true;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/leodata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"leodata"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
